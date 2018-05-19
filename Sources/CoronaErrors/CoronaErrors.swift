@@ -19,7 +19,7 @@ public enum CoronaError: Error {
 ///if the optional is nil.
 public func unwrap<T>(_ optional:T?) throws -> T {
     guard let value = optional else {
-        throw CoronaError<T>.nil
+        throw CoronaError.nil
     }
     return value
 }
