@@ -1,7 +1,7 @@
 ///A central definition of common types of errors.
-public enum CoronaError<T>: Error {
+public enum CoronaError: Error {
     ///An argument to a method does not have a valid value.
-    case invalidArgument(T)
+    case invalidArgument
     ///An optional is nil when it should not be.
     case `nil`
     ///A variable (not necessarily an argument to a method)
