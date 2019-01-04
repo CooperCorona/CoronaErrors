@@ -1,6 +1,8 @@
 # CoronaErrors
 Collection of convenience types, methods, and an exception hierarchy to make error handling easier.
 
+See [https://coopercorona.github.io/CoronaErrors/](https://coopercorona.github.io/CoronaErrors/) for API documentation.
+
 ## Errors
 All `Error` types are enums conforming to the `Error` protocol. Each type logically groups together similar types of errors. All `Error` types have a corresponding `Exception` type.
 
