@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html"> Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html"> Reference</a>
+        <img id="carat" src="img/carat.png" />
+          Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes.html#/s:12CoronaErrors15AnyNilExceptionC">AnyNilException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Exception.html">Exception</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FileNotFoundException.html">FileNotFoundException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/IOException.html">IOException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NilException.html">NilException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/OperationException.html">OperationException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ParseException.html">ParseException</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ValueException.html">ValueException</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/IOError.html">IOError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/OperationError.html">OperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ParseError.html">ParseError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/ValueError.html">ValueError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:12CoronaErrors2eeoiySbs5Error_p_xtSQRzsACRzlF">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:12CoronaErrors6unwrapyxxSgKlF">unwrap(_:)</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <h1 id='coronaerrors' class='heading'>CoronaErrors</h1>
+
+<p>Collection of convenience types, methods, and an exception hierarchy to make error handling easier.</p>
+<h2 id='errors' class='heading'>Errors</h2>
+
+<p>All <code>Error</code> types are enums conforming to the <code>Error</code> protocol. Each type logically groups together similar types of errors. All <code>Error</code> types have a corresponding <code><a href="Classes/Exception.html">Exception</a></code> type.</p>
+<h3 id='ioerror' class='heading'>IOError</h3>
+
+<p>Occurs when an input/output operation cannot be completed.</p>
+
+<ul>
+<li><code>fileNotFound</code>: A file or directory does not exist at a given path.</li>
+<li><code>permissionDenied</code>: The program does not have permission to access the file or directory at a given path.</li>
+</ul>
+<h3 id='operationerror' class='heading'>OperationError</h3>
+
+<p>Occurs when an operation cannot be completed.</p>
+
+<ul>
+<li><code>alreadyExists</code>: The target of an operation already exists.</li>
+<li><code>missing</code>: The target of an operation does not exist.</li>
+</ul>
+<h3 id='parseerror' class='heading'>ParseError</h3>
+
+<p>Occurs when parsing some object into a different kind of object.</p>
+
+<ul>
+<li><code>incorrectFormat</code>: The format of the original object is incorrect and cannot be converted to the new object.</li>
+<li><code>notEnoughComponents</code>: The format of the original object requires a specific number of logical components to convert, but not enough components were provided.</li>
+<li><code>tooManyComponents</code>: The format of the original object requires a specific number of logical components to convert, too many  components were provided.</li>
+</ul>
+<h3 id='valueerror' class='heading'>ValueError</h3>
+
+<p>Occurs when the value of a variable is incorrect in some way.</p>
+
+<ul>
+<li><code>invalidArgument</code>: An argument to a function has an incorrect value.</li>
+<li><code>nil</code>: A value is <code>nil</code> when a value should exist.</li>
+<li><code>invalidState</code>: A variable has an incorrect value. Similar to <code>invalidArgument</code> except it doesn&rsquo;t assume the variable in question is a function&rsquo;s argument.</li>
+</ul>
+<h2 id='exceptions' class='heading'>Exceptions</h2>
+
+<p>Exceptions encapsulate an <code>Error</code> and additional metadata, including a explanatory message and stack trace. <code><a href="Classes/Exception.html">Exception</a></code> conforms to <code>Error</code>, so it can be thrown and caught like any other <code>Error</code>. Subclasses are used to provide additional contextual information and allow more specific catch statements.</p>
+
+<p>Exceptions can be caught as follows:</p>
+<pre class="highlight plaintext"><code>func throwException() { throw Exception(error: ValueError.nil, message: "nil")
+do {
+  try throwException()
+} catch let error as Exception {
+  // Do something with the error...
+}
+</code></pre>
+
+<p>Specific underlying errors can be caught using a <code>where</code> clause:</p>
+<pre class="highlight plaintext"><code>func throwException() { throw Exception(error: ValueError.nil, message: "nil")
+do {
+  try throwException()
+} catch let error as Exception where error.error == ValueError.nil {
+  // Do something with the error...
+}
+</code></pre>
+
+<p>Subclasses of <code><a href="Classes/Exception.html">Exception</a></code> can override <code>descriptionComponents</code> to include additional information in the string representation of the Exception. Subclasses must call the super implementation and prepend it to their custom components.</p>
+<h3 id='ioexception' class='heading'>IOException</h3>
+
+<p>An exception caused by an <code><a href="Enums/IOError.html">IOError</a></code>.</p>
+<h4 id='filenotfoundexception' class='heading'>FileNotFoundException</h4>
+
+<p>An <code><a href="Classes/IOException.html">IOException</a></code> caused by an <code><a href="Enums/IOError.html#/s:12CoronaErrors7IOErrorO12fileNotFoundyA2CmF">IOError.fileNotFound</a></code> error.</p>
+<h3 id='nilexception' class='heading'>NilException</h3>
+
+<p>An exception caused by a <code><a href="Enums/ValueError.html#/s:12CoronaErrors10ValueErrorO3nilyA2CmF">ValueError.nil</a></code> error. Parameterized based on the type of variable that is <code>nil</code>. To catch any type of <code><a href="Classes/NilException.html">NilException</a></code> irrespective of type, catch <code><a href="Classes.html#/s:12CoronaErrors15AnyNilExceptionC">AnyNilException</a></code>. This is required because <code><a href="Classes/NilException.html">NilException&lt;T&gt;</a></code> cannot be cast to <code><a href="Classes/NilException.html">NilException&lt;U&gt;</a></code>, regardless of whether <code>T</code> can be cast to <code>U</code>, so trying to catch <code><a href="Classes/NilException.html">NilException&lt;Any&gt;</a></code> will fail.</p>
+<h3 id='operationerror' class='heading'>OperationError</h3>
+
+<p>An exception caused by an <code><a href="Enums/OperationError.html">OperationError</a></code>.</p>
+<h3 id='parseexception' class='heading'>ParseException</h3>
+
+<p>An exception caused by a <code><a href="Enums/ParseError.html">ParseError</a></code>.</p>
+<h3 id='valueerror' class='heading'>ValueError</h3>
+
+<p>An exception caused by a <code><a href="Enums/ValueError.html">ValueError</a></code>. Exposes the value whose incorrectness caused the exception. <code>ValueError&lt;T&gt;.expected</code> constructs a <code><a href="Enums/ValueError.html">ValueError</a></code> instance by passing in an expected value along with an actual value, automatically setting the <code>message</code> property to explain what value was expected.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2019-01-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
