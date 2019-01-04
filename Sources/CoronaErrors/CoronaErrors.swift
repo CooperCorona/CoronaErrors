@@ -1,25 +1,27 @@
-///A central definition of common types of errors.
-public enum CoronaError: Error {
-    ///An argument to a method does not have a valid value.
-    case invalidArgument
-    ///An optional is nil when it should not be.
-    case `nil`
-    ///A variable (not necessarily an argument to a method)
-    ///has an invalid value.
-    case invalidState
-    ///An operation to create something was performed when
-    ///that something already existed.
-    case alreadyExists
-    ///An operation to remove something was performed when
-    ///that something didn't exist. Similar to nil.
-    case missing
-}
-
 ///Unwraps the given optional, and throws an exception
 ///if the optional is nil.
 public func unwrap<T>(_ optional:T?) throws -> T {
     guard let value = optional else {
-        throw CoronaError.nil
+        throw NilException<T>()
     }
     return value
+}
+
+///Compares two error objects. Allows the comparison of different Error enums
+///or an Error protocol and a specific Error enum.
+///
+///This is useful when catching exceptions of a specific Exception subclass *and*
+///a specific underlying Error.
+///
+///```
+///catch let error as Exception where error.error == ValueError.invalidArgument
+///```
+/// - parameter lhs: An error to compare with.
+/// - parameter rhs: An error to compare to. Must be equatable.
+/// - returns: `true` if the errors are equal, `false` otherwise.
+public func ==<T>(lhs:Error, rhs:T) -> Bool where T: Error & Equatable {
+    guard let lhs = lhs as? T else {
+        return false
+    }
+    return lhs == rhs
 }
