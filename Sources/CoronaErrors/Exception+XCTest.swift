@@ -12,7 +12,7 @@ import XCTest
 ///if no exception is thrown or if the wrong type of exception is thrown.
 /// - parameter type: The type of error to be thrown. Must be a subclass of Exception.
 /// - parameter closure: A closure that can throw an exception.
-func XCTAssertThrowsException<T>(type:T.Type, closure:() throws -> Void) where T: Exception {
+public func XCTAssertThrowsException<T>(type:T.Type, closure:() throws -> Void) where T: Exception {
     do {
         try closure()
         XCTFail("No exception thrown. Expected \(T.self) to be thrown.")
