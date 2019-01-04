@@ -13,9 +13,15 @@ open class ValueException<T>: Exception {
     ///The value that caused the exception.
     public let actualValue:T
 
-    public init(error:Error, message:String?, actualValue:T) {
+    ///Initializes an Exception instance.
+    /// - parameter error: The error causing the exception.
+    /// - parameter message: A human-readable message explaining the error.
+    /// - parameter actualValue: The (incorrect) value causing the exception.
+    /// - parameter stackTrace: The stack trace at the time the exception was thrown.
+    ///Defaults to `Thread.callStackSymbols`.
+    public init(error:Error, message:String?, actualValue:T, stackTrace:[String]? = nil) {
         self.actualValue = actualValue
-        super.init(error: error, message: message)
+        super.init(error: error, message: message, stackTrace: stackTrace)
     }
 
     ///Constructs a ValueException with a message displaying expected value.
@@ -25,16 +31,6 @@ open class ValueException<T>: Exception {
     /// - returns: A ValueException<T> instance.
     public static func expected(value:T, error:Error, actualValue:T) -> ValueException<T> {
         return ValueException(error: error, message: "Expected \(value)", actualValue: actualValue)
-    }
-
-    ///Constructs a ValueException with a nil actual value and a message saying
-    ///a non-nil value was expected. Note that the return type is `ValueException<T?>`,
-    ///so exception handlers must catch the optional type to correctly handle the exception.
-    /// - parameter message: The message to display to the exception handler. Default value
-    ///is "Expected non-nil value".
-    /// - returns: A ValueException<T?> instance.
-    public static func `nil`(message:String = "Expected non-nil value") -> ValueException<T?> {
-        return ValueException<T?>(error: ValueError.nil, message: message, actualValue: nil)
     }
 
     open override func descriptionComponents() -> [String] {

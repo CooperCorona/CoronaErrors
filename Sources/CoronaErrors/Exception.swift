@@ -19,6 +19,11 @@ open class Exception: Error, CustomStringConvertible {
     public let stackTrace:[String]
     public var description:String { return self.descriptionComponents().joined(separator: " | ")}
 
+    ///Initializes an Exception instance.
+    /// - parameter error: The error causing the exception.
+    /// - parameter message: A human-readable message explaining the error.
+    /// - parameter stackTrace: The stack trace at the time the exception was thrown.
+    ///Defaults to `Thread.callStackSymbols`.
     public init(error:Error, message:String?, stackTrace:[String]? = nil) {
         self.error = error
         self.message = message
