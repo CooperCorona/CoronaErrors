@@ -10,6 +10,9 @@ let package = Package(
         .library(
             name: "CoronaErrors",
             targets: ["CoronaErrors"]),
+        .library(
+            name: "CoronaErrorsTestHooks",
+            targets: ["CoronaErrorsTestHooks"])
     ],
     dependencies: [
         
@@ -18,8 +21,11 @@ let package = Package(
         .target(
             name: "CoronaErrors",
             dependencies: []),
+        .target(
+            name: "CoronaErrorsTestHooks",
+            dependencies: ["CoronaErrors"]),
         .testTarget(
             name: "CoronaErrorsTests",
-            dependencies: ["CoronaErrors"]),
+            dependencies: ["CoronaErrors", "CoronaErrorsTestHooks"]),
     ]
 )
