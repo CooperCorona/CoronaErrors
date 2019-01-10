@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoronaErrors
 import XCTest
 
 ///Asserts that a given closure throws a specific type of exception. Fails the test
@@ -22,3 +23,4 @@ public func XCTAssertThrowsException<T>(type:T.Type, closure:() throws -> Void) 
         XCTFail("Expected \(T.self) to be thrown. Actual: \(error)")
     }
 }
+
