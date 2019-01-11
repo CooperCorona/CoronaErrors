@@ -15,7 +15,7 @@ open class IOException: Exception {
     /// - parameter message: A human-readable message explaining the error.
     /// - parameter stackTrace: The stack trace at the time the exception was thrown.
     ///Defaults to `Thread.callStackSymbols`.
-    public init(error:IOError, message:String?, stackTrace:[String]?) {
+    public init(error:IOError, message:String?, stackTrace:[String]? = nil) {
         super.init(error: error, message: message, stackTrace: stackTrace)
     }
 

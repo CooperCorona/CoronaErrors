@@ -15,7 +15,7 @@ open class OperationException: Exception {
     /// - parameter message: A human-readable message explaining the error.
     /// - parameter stackTrace: The stack trace at the time the exception was thrown.
     ///Defaults to `Thread.callStackSymbols`.
-    public init(error: OperationError, message: String?, stackTrace: [String]?) {
+    public init(error: OperationError, message: String?, stackTrace: [String]? = nil) {
         super.init(error: error, message: message, stackTrace: stackTrace)
     }
 
